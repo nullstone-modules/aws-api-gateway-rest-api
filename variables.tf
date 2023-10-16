@@ -8,6 +8,10 @@ EOF
   default = {}
 }
 
+locals {
+  function_arn = var.app_metadata["function_arn"]
+}
+
 variable "path" {
   type        = string
   description = <<EOF
