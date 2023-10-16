@@ -1,0 +1,14 @@
+org_name: nullstone
+name: aws-api-gateway-mapping
+friendly_name: API Gateway Mapping
+description: Creates an API Gateway mapping so that requests to a path are routed to an application.
+category: capability
+subcategory: ingress
+provider_types:
+    - aws
+platform: ingress
+subplatform: api-gateway
+type: ""
+appCategories:
+    - serverless
+is_public: true
