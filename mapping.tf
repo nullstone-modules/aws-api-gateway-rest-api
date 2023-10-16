@@ -7,7 +7,8 @@ resource "aws_apigatewayv2_api" "this" {
 }
 
 resource "aws_apigatewayv2_api_mapping" "this" {
-  api_id      = aws_apigatewayv2_api.this.id
-  domain_name = local.domain_name
-  stage       = "$default"
+  api_id          = aws_apigatewayv2_api.this.id
+  domain_name     = local.domain_name
+  api_mapping_key = var.path
+  stage           = "$default"
 }
