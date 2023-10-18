@@ -1,5 +1,5 @@
 output "public_urls" {
-  value = { for public_url in local.public_urls: url => public_url }
+  value = local.public_urls
 }
 
 output "permissions" {
