@@ -6,8 +6,8 @@ category: capability
 subcategory: ingress
 provider_types:
     - aws
-platform: ingress
-subplatform: api-gateway
+platform: api-gateway
+subplatform: ""
 type: ""
 appCategories:
     - serverless
