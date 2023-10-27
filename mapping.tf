@@ -78,9 +78,9 @@ resource "aws_api_gateway_stage" "default" {
   stage_name    = "default"
 }
 
-resource "aws_api_gateway_base_path_mapping" "example" {
-  api_id      = aws_api_gateway_rest_api.this.id
-  stage_name  = aws_api_gateway_stage.default.stage_name
-  domain_name = local.domain_name
-  base_path   = var.path
+resource "aws_apigatewayv2_api_mapping" "this" {
+  api_id          = aws_api_gateway_rest_api.this.id
+  domain_name     = local.domain_name
+  api_mapping_key = var.path
+  stage           = aws_api_gateway_stage.default.stage_name
 }
