@@ -9,7 +9,7 @@ EOF
 }
 
 locals {
-  function_arn = var.app_metadata["function_arn"]
+  invoke_arn = var.app_metadata["invoke_arn"]
 }
 
 variable "path" {

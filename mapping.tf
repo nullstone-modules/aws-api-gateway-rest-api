@@ -35,7 +35,7 @@ resource "aws_api_gateway_integration" "this" {
   http_method             = aws_api_gateway_method.root-any.http_method
   integration_http_method = "ANY"
   type                    = "AWS_PROXY"
-  uri                     = local.function_arn
+  uri                     = local.invoke_arn
 }
 
 resource "aws_api_gateway_deployment" "this" {
