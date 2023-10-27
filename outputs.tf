@@ -8,7 +8,7 @@ output "permissions" {
       sid_prefix = "AllowGatewayAccess"
       action     = "lambda:InvokeFunction"
       principal  = "apigateway.amazonaws.com"
-      source_arn = "${aws_api_gateway_rest_api.this.execution_arn}/*/${aws_api_gateway_stage.default.stage_name}"
+      source_arn = "${aws_api_gateway_rest_api.this.execution_arn}/*"
     }
   ]
 }
