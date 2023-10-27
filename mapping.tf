@@ -4,7 +4,7 @@ resource "aws_api_gateway_rest_api" "this" {
   endpoint_configuration {
     types = ["EDGE"]
   }
-  put_rest_api_mode = contains(local.endpoint_types, "PRIVATE") ? "merge" : "overwrite"
+  put_rest_api_mode = contains(var.endpoint_types, "PRIVATE") ? "merge" : "overwrite"
 
   tags = local.tags
 }
