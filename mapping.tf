@@ -10,10 +10,10 @@ resource "aws_api_gateway_rest_api" "this" {
 }
 
 resource "aws_api_gateway_method" "root-any" {
-  rest_api_id = aws_api_gateway_rest_api.this.id
-  resource_id = aws_api_gateway_rest_api.this.root_resource_id
+  rest_api_id   = aws_api_gateway_rest_api.this.id
+  resource_id   = aws_api_gateway_rest_api.this.root_resource_id
   authorization = "NONE"
-  http_method = "ANY"
+  http_method   = "ANY"
 }
 
 resource "aws_api_gateway_resource" "proxy" {
@@ -72,5 +72,5 @@ resource "aws_api_gateway_base_path_mapping" "example" {
   api_id      = aws_api_gateway_rest_api.this.id
   stage_name  = aws_api_gateway_stage.default.stage_name
   domain_name = local.domain_name
-  base_path = var.path
+  base_path   = var.path
 }
