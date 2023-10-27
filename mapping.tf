@@ -75,7 +75,7 @@ resource "aws_api_gateway_deployment" "this" {
 resource "aws_api_gateway_stage" "default" {
   deployment_id = aws_api_gateway_deployment.this.id
   rest_api_id   = aws_api_gateway_rest_api.this.id
-  stage_name    = "$default"
+  stage_name    = "default"
 }
 
 resource "aws_api_gateway_base_path_mapping" "example" {
