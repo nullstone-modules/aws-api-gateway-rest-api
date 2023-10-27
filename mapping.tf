@@ -29,10 +29,19 @@ resource "aws_api_gateway_method" "proxy-any" {
   http_method   = "ANY"
 }
 
-resource "aws_api_gateway_integration" "this" {
+resource "aws_api_gateway_integration" "root-integration" {
   rest_api_id             = aws_api_gateway_rest_api.this.id
   resource_id             = aws_api_gateway_rest_api.this.root_resource_id
   http_method             = aws_api_gateway_method.root-any.http_method
+  integration_http_method = "ANY"
+  type                    = "AWS_PROXY"
+  uri                     = local.invoke_arn
+}
+
+resource "aws_api_gateway_integration" "proxy-integration" {
+  rest_api_id             = aws_api_gateway_rest_api.this.id
+  resource_id             = aws_api_gateway_resource.proxy.id
+  http_method             = aws_api_gateway_method.proxy-any.http_method
   integration_http_method = "ANY"
   type                    = "AWS_PROXY"
   uri                     = local.invoke_arn
@@ -53,7 +62,8 @@ resource "aws_api_gateway_deployment" "this" {
       aws_api_gateway_method.root-any.id,
       aws_api_gateway_resource.proxy.id,
       aws_api_gateway_method.proxy-any.id,
-      aws_api_gateway_integration.this.id,
+      aws_api_gateway_integration.root-integration.id,
+      aws_api_gateway_integration.proxy-integration.id
     ]))
   }
 
