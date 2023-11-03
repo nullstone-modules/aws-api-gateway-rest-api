@@ -1,7 +1,7 @@
 org_name: nullstone
-name: aws-api-gateway-mapping
-friendly_name: API Gateway Mapping
-description: Creates an API Gateway mapping so that requests to a path are routed to an application.
+name: aws-api-gateway-rest-api
+friendly_name: API Gateway REST API
+description: Creates an API Gateway REST API and maps it to path so that requests are routed to an application.
 category: capability
 subcategory: ingress
 provider_types:
