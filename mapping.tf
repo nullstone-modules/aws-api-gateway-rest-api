@@ -2,7 +2,7 @@ resource "aws_api_gateway_rest_api" "this" {
   name = "${local.resource_name}-api"
 
   endpoint_configuration {
-    types = ["EDGE"]
+    types = var.endpoint_types
   }
   put_rest_api_mode = contains(var.endpoint_types, "PRIVATE") ? "merge" : "overwrite"
 
