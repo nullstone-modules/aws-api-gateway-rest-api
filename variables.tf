@@ -22,6 +22,7 @@ EOF
 
 variable "paths" {
   type        = set(string)
+  default     = []
   description = <<EOF
 The paths to route to this application. Any requests to the API Gateway beginning with any of these paths will be routed to this application.
 EOF
