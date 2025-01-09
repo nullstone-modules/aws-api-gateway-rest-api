@@ -16,6 +16,14 @@ variable "path" {
   type        = string
   description = <<EOF
 The path to route to this application. Any requests to the API Gateway beginning with this path will be routed to this application.
+This variable is being deprecated in favor of the "paths" variable. Please use the "paths" variable instead.
+EOF
+}
+
+variable "paths" {
+  type        = set(string)
+  description = <<EOF
+The paths to route to this application. Any requests to the API Gateway beginning with any of these paths will be routed to this application.
 EOF
 }
 

@@ -78,9 +78,20 @@ resource "aws_api_gateway_stage" "default" {
   stage_name    = "default"
 }
 
-resource "aws_apigatewayv2_api_mapping" "this" {
+resource "aws_apigatewayv2_api_mapping" "this-deprecated" {
+  count = var.path != "" ? 1 : 0
+
   api_id          = aws_api_gateway_rest_api.this.id
   domain_name     = local.domain_name
   api_mapping_key = var.path
+  stage           = aws_api_gateway_stage.default.stage_name
+}
+
+resource "aws_apigatewayv2_api_mapping" "this" {
+  for_each = var.paths
+
+  api_id          = aws_api_gateway_rest_api.this.id
+  domain_name     = local.domain_name
+  api_mapping_key = each.value
   stage           = aws_api_gateway_stage.default.stage_name
 }
