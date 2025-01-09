@@ -14,6 +14,7 @@ locals {
 
 variable "path" {
   type        = string
+  default     = ""
   description = <<EOF
 The path to route to this application. Any requests to the API Gateway beginning with this path will be routed to this application.
 This variable is being deprecated in favor of the "paths" variable. Please use the "paths" variable instead.
