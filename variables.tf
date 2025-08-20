@@ -29,10 +29,12 @@ The paths to route to this application. Any requests to the API Gateway beginnin
 EOF
 }
 
+
 variable "endpoint_types" {
   type        = list(string)
-  default     = ["EDGE"]
+  default     = ["REGIONAL"]
   description = <<EOF
 A list of endpoint types to configure. Valid values that can be included in the list are "EDGE", "REGIONAL", and "PRIVATE".
+NOTE: Using EDGE can cause issues when destroying the Certificate attached to the API Gateway. See https://repost.aws/questions/QUSFWvstLxTeGDHf6Xc7hGjw/api-gateway-cannot-remove-acm-certificate
 EOF
 }
