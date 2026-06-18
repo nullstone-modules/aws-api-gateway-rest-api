@@ -1,3 +1,6 @@
+# 0.3.0 (Jun 18, 2026)
+* Add optional `cognito-user-pool` connection (contract `datastore/aws/cognito`). When connected, the API Gateway secures all routes with a Cognito user pool authorizer.
+
 # 0.2.0 (Aug 19, 2025)
 * Switch REST API to create REGIONAL endpoint instead of EDGE by default.
 
