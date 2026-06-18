@@ -12,7 +12,8 @@ resource "aws_api_gateway_rest_api" "this" {
 resource "aws_api_gateway_method" "root-any" {
   rest_api_id   = aws_api_gateway_rest_api.this.id
   resource_id   = aws_api_gateway_rest_api.this.root_resource_id
-  authorization = "NONE"
+  authorization = local.authorization
+  authorizer_id = local.authorizer_id
   http_method   = "ANY"
 }
 
@@ -25,7 +26,8 @@ resource "aws_api_gateway_resource" "proxy" {
 resource "aws_api_gateway_method" "proxy-any" {
   rest_api_id   = aws_api_gateway_rest_api.this.id
   resource_id   = aws_api_gateway_resource.proxy.id
-  authorization = "NONE"
+  authorization = local.authorization
+  authorizer_id = local.authorizer_id
   http_method   = "ANY"
 }
 
@@ -60,10 +62,13 @@ resource "aws_api_gateway_deployment" "this" {
     #       It will stabilize to only change when resources change afterwards.
     redeployment = sha1(jsonencode([
       aws_api_gateway_method.root-any.id,
+      aws_api_gateway_method.root-any.authorization,
       aws_api_gateway_resource.proxy.id,
       aws_api_gateway_method.proxy-any.id,
+      aws_api_gateway_method.proxy-any.authorization,
       aws_api_gateway_integration.root-integration.id,
-      aws_api_gateway_integration.proxy-integration.id
+      aws_api_gateway_integration.proxy-integration.id,
+      join(",", [for a in aws_api_gateway_authorizer.cognito : a.id])
     ]))
   }
 
